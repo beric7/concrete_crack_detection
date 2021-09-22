@@ -7,9 +7,9 @@ Created on Tue Sep  7 12:24:35 2021
 import os
 import shutil
 from tqdm import tqdm
-path_to_list_dir = 'F://PROJECTS/in-painting/RFR-Inpainting-master/Bridge_LCW/data/LCW_complete/cracked_lcw/'
-path_to_target_dir = 'F://PROJECTS/in-painting/RFR-Inpainting-master/Bridge_LCW/data/LCW_complete/images/'
-path_to_dest_dir = 'F://PROJECTS/in-painting/RFR-Inpainting-master/Bridge_LCW/data/LCW_complete/cracked_images_lcw/'
+path_to_list_dir = 'LIST'
+path_to_target_dir = 'TARGET'
+path_to_dest_dir = 'SAVE'
 
 if not os.path.exists(path_to_dest_dir): # if it doesn't exist already
     os.makedirs(path_to_dest_dir)  

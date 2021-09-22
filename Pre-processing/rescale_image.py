@@ -6,8 +6,6 @@ Created on Sat Jul  4 12:38:49 2020
 """
 import sys
 
-sys.path.insert(0, 'S://Python/general_utils/')
-
 from image_utils import rescale
 
 # rescale(source_image_folder, destination, dimension):

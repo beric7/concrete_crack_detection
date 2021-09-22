@@ -6,8 +6,6 @@ Created on Fri Jul 31 17:10:15 2020
 """
 import sys
 
-sys.path.insert(0, 'S://Python/general_utils/')
-
 from image_utils import extension_change
 
 source_image_folder = './Test/Masks/'

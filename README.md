@@ -18,7 +18,7 @@ Concrete crack
 The corrosion condition state segmentation dataset which can be used for the localization of structural damage, and for more futuristic style transfer [SPADE](https://arxiv.org/abs/1903.07291) and [GAN](https://arxiv.org/abs/1912.04958) / [GAN-Inversion](https://arxiv.org/abs/2101.05278) applications. 
 
 ## Results
-We were able to achieve an f1-score of 86.67% using the weighted cross entropy classes model. This included using augmented data. 
+While f1-scores may be useful when classes are well-balanced, they can be misleading in situations such as this, where the classes are unbalanced. The percentage of labeled crack pixels in the conglomerate and the original LCW dataset was 2.8% and 0.3% respectfully. The f1-score for the model trained on the conglomerate dataset was 98.5%, however it was only able to detect 71% of the crack pixels. Therefore we have used the percentage of correctly identified cracks as our metric for success. With the conglomerate dataset predicting approximately 71% of the crack pixels, and the LCW with no blank images predicting approximately 40% of the cracks.  
 
 <p align="center">
     <img src="/figures/lcw_table.jpg"  | width=600/>

@@ -2,8 +2,8 @@
 Concrete crack detection for bridge inspections
 
 <p align="center">
-    <img src="/figures/congl_pred.jpg" | width=498 />
-    <img src="/figures/lcw.png" | width=498 />
+    <img src="/figures/congl_pred.jpg" | width=450 />
+    <img src="/figures/lcw.png" | width=450 />
 </p>
 
 ***Figure: Conglomerate dataset (left), Labeled Cracks in the Wild (LCW) dataset (right)***

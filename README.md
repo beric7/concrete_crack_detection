@@ -11,6 +11,7 @@ Non concrete crack (Background)
 Concrete crack
 ```
 ***Coming soon in November***
+
 :red_circle:\[[Paper](/access/not_ready.png)\] :red_circle:\[[Dataset (LCW)](/access/not_ready.png)\] :red_circle:\[[Dataset (Conglomerate)](/access/not_ready.png)\] :red_circle:\[[Trained models (LCW)](/access/not_ready.png)\] :red_circle:\[[Trained models (Conglomerate)](/access/not_ready.png)\]
 
 The corrosion condition state segmentation dataset which can be used for the localization of structural damage, and for more futuristic style transfer [SPADE](https://arxiv.org/abs/1903.07291) and [GAN](https://arxiv.org/abs/1912.04958) / [GAN-Inversion](https://arxiv.org/abs/2101.05278) applications. 
@@ -49,10 +50,10 @@ Once training has converged or when it has stopped, we can used the best checkpo
 - gets combined mask and image overaly
 - gets one-hot-encoded vector images of predictions
 
-## Training with the Structural Material dataset
+## Training with the concrete crack dataset
 
 1. Clone the repository
-2. Download the :red_circle:[dataset](/access/not_ready.png)
+2. Download the Labeled Cracks in the Wild :red_circle:[dataset](/access/not_ready.png) or the Conglomerate Concrete Crack :red_circle:[dataset](/access/not_ready.png)
 3. Go into the Training folder
 4. Create a DATA folder
 5. Copy and paste the Train and Test folders for 512x512 images from the dataset you downloaded into the DATA folder

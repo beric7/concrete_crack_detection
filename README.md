@@ -107,11 +107,15 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 
 2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial](https://www.youtube.com/watch?v=8YcIIMUQZF4) to outline our process. 
 
-3. If you followed the video, you will have matching GIMP, PNG, and jpeg files, indicating the GIMP, mask, and image trio respectfully. 
+3. If you followed the video, you will have matching GIMP, PNG, and jpeg files, indicating the GIMP, mask, and image trio respectfully.
 
-4. Here you must convert the color of the PNG to a black background, and a white labeled crack. This is done using the .
+4. If there are blank images (no cracks in the image), with no mask pairs, then you must make a blank binary file for that image with **run_image_to_blank_mask.py**. 
 
-5. Re-scale these images and masks using the respective files in Pre-processing as you find appropiate. You can also use the random sort function we have created to randomly split the data into Training and Testing. 
+5. Sometimes the GIMP files save with different backgrounds (white or black). To ensure that we have black backgrounds, and the data is not corrupted when converting to binary images, we will convert them to binary numpy files as a first step. This is done using the **run_mask_to_binary_image.py** file. 
+
+6. Next, we convert the binary .npy files to .png files through **run_colorize_binary.py**. Once this is complete we have standardized .png files with only (0,0,0) and (255,255,255) values. 
+
+7. Re-scale these images and masks using the respective files in Pre-processing as you find appropiate. You can also use the random sort function we have created to randomly split the data into Training and Testing. 
 
 
 ## Citation

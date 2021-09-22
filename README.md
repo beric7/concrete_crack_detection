@@ -2,8 +2,8 @@
 Concrete crack detection for bridge inspections
 
 <p align="center">
-    <img src="/figures/congl_pred.jpg" | width=500 />
-    <img src="/figures/lcw.png" | width=500 />
+    <img src="/figures/congl_pred.jpg" | width=498 />
+    <img src="/figures/lcw.png" | width=498 />
 </p>
 
 The two semantic classes in the dataset are:

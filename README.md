@@ -38,6 +38,10 @@ The most important environment configurations are the following:
 - tqdm
 - matplotlib
 - sklearn
+- cv2
+- Pillow
+- pandas
+- shutil
 
 ## Evaluating the Trained DeeplabV3+ Model
 - Download the DeeplabV3+ :red_circle:[trained model weights](/access/not_ready.png)

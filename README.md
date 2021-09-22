@@ -105,7 +105,7 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 
 1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 
-2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial]() to outline our process. 
+2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial](https://www.youtube.com/watch?v=8YcIIMUQZF4) to outline our process. 
 
 3. If you followed the video, you will have matching GIMP, PNG, and jpeg files, indicating the GIMP, mask, and image trio respectfully. 
 

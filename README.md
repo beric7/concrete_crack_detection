@@ -2,9 +2,11 @@
 Concrete crack detection for bridge inspections
 
 <p align="center">
-    <img src="/figures/congl_pred.jpg" | width=500 />
-    <img src="/figures/lcw.png" | width=500 />
+    <img src="/figures/congl_pred.jpg" | width=450 />
+    <img src="/figures/lcw.png" | width=450 />
 </p>
+
+***Figure: Conglomerate dataset (left), Labeled Cracks in the Wild (LCW) dataset (right)***
 
 The two semantic classes in the dataset are:
 ```
@@ -49,7 +51,6 @@ Once training has converged or when it has stopped, we can used the best checkpo
 ***run_show_results__.py***
 - gets predicted masks
 - gets combined mask and image overaly
-- gets one-hot-encoded vector images of predictions
 
 ## Training with the concrete crack dataset
 
@@ -102,6 +103,8 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 
 ## Building a Custom Dataset
 (The images in the dataset were annotated using [GIMP](https://www.gimp.org/). We suggest that you use this tool)
+
+0. **If you are planning to extend on the LCW dataset, then please read the annotation guidelines provided by the author in the :red_circle: [LCW dataset](/access/not_ready.png) repository.**
 
 1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 

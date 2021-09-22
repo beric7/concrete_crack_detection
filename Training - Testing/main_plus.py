@@ -25,7 +25,7 @@ parser.add_argument(
 parser.add_argument("--epochs", default=10, type=int)
 parser.add_argument("--batchsize", default=2, type=int)
 parser.add_argument("--output_stride", default=8, type=int)
-parser.add_argument("--channels", default=4, type=int)
+parser.add_argument("--channels", default=2, type=int)
 parser.add_argument("--pretrained", default='')
 
 args = parser.parse_args()

@@ -18,7 +18,7 @@ Concrete crack
 The conglomerate concrete crack segmentation dataset is comprised of many existing concrete crack datasets from literature. The Labeled Cracks in the Wild dataset is comprised of more global scenes gathered from bridge inspection reports. These two datasets aid with the detection and localization on concrete cracks. In particular, the LCW dataset is useful to the field becuase it offers a global scene perspective, which is more of what is found during inspection.  
 
 ## Results
-While f1-scores may be useful when classes are well-balanced, they can be misleading in situations such as this, where the classes are unbalanced. The percentage of labeled crack pixels in the conglomerate and the original LCW dataset was 2.8% and 0.3% respectfully. The f1-score for the model trained on the conglomerate dataset was 98.5%, however it was only able to detect 71% of the crack pixels. Therefore we have used the percentage of correctly identified cracks as our metric for success. With the conglomerate dataset predicting approximately 71% of the crack pixels, and the LCW with no blank images predicting approximately 40% of the cracks.  
+While f1-scores may be useful when classes are well-balanced, they can be misleading in situations such as this, where the classes are unbalanced. For example, the percentage of labeled crack pixels in the conglomerate and the original LCW dataset was 2.8% and 0.3% respectfully. The f1-score for the model trained on the conglomerate 98.5%. However for the best conglomerate model was only able to detect 71% of the crack pixels. Therefore we have used the percentage of correctly identified cracks as our metric for success. With the conglomerate dataset predicting approximately 71% of the crack pixels, and the LCW with no blank images predicting approximately 40% of the cracks (the best LCW f1-score was 96.4%).
 
 <p align="center">
     <img src="/figures/lcw_table.jpg"  | width=600/>
@@ -105,7 +105,7 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 
 1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 
-2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial]() to outline our process. 
+2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial](https://www.youtube.com/watch?v=8YcIIMUQZF4) to outline our process. 
 
 3. If you followed the video, you will have matching GIMP, PNG, and jpeg files, indicating the GIMP, mask, and image trio respectfully. 
 

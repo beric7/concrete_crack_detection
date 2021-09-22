@@ -91,32 +91,35 @@ During training there are model checkpoints saved every epoch. At these checkpoi
 ```
 # color mapping corresponding to classes
 # ---------------------------------------------------------------------
-# 0 = Good (Black)
-# 1 = Fair (Red)
-# 2 = Poor (Green)
-# 3 = Severe (Yellow)
+# 0 = background (Black)
+# 1 = crack (white)
 # ---------------------------------------------------------------------
-self.mapping = {(0,0,0): 0, (0,0,128): 1, (0,128,0): 2, (0,128,128): 3}
+self.mapping = {(0,0,0): 0, (255,255,255): 1}
 ```
-6. Adjust the number of 'channels' in the training command to match the number of channels that you have.
+6. Adjust the number of 'channels' in the training command to match the number of channels that you have. ***(In this case you should only have two channels since we only have a binary classification)***. 
 7. Ensure that your DATA folder has a folder called 'Train' and a folder called 'Test'. Inside each of those folders include the mask and image pairs in their respective folders (Masks, Images). 
 8. If you have set this up correctly then you are now ready to begin.
 
 ## Building a Custom Dataset
-(The images in the dataset were annotated using [labelme](https://github.com/wkentaro/labelme). We suggest that you use this tool)
+(The images in the dataset were annotated using [GIMP](https://www.gimp.org/). We suggest that you use this tool)
 
-1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. 
+1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 
-2. After annotating you will have matching JSON and jpeg files, indicating the annotation and image pair respectfully. 
+2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial]() to outline our process. 
 
-3. You will take these files and generate masks and one-hot-encoded vector files using ***run_labelme2voc_.py*** file in Pre-processing. Then you can re-scale these images and masks using the respective files in Pre-processing. You can also use the random sort function we have created to randomly split the data. 
+3. If you followed the video, you will have matching GIMP, PNG, and jpeg files, indicating the GIMP, mask, and image trio respectfully. 
 
-The ***labels_corrosion_segmentation.txt*** file contains the class labels needed for the ***run_labelme2voc_.py*** function. If your classes are different then they need to be reflected in this particular file.
+4. Here you must convert the color of the PNG to a black background, and a white labeled crack. This is done using the .
+
+5. Re-scale these images and masks using the respective files in Pre-processing as you find appropiate. You can also use the random sort function we have created to randomly split the data into Training and Testing. 
+
 
 ## Citation
 ```
-Corrosion Condition State Dataset: 
-Corrosion Condition State Model:
+Conglomerate Concrete Crack Dataset: 
+Conglomerate Concrete Crack Models:
+LCW Dataset: 
+LCW Models:
 Paper:
 ```
 

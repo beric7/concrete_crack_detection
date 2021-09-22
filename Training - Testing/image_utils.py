@@ -347,7 +347,34 @@ def random_sort_images__(source_mask_folder, source_image_folder, destination_ma
                         destination_mask_train+ '/' + filename)
             
         count = count + 1
-        
+
+def background_to_white(source_mask_folder, destination):
+   
+   if not os.path.exists(destination): # if it doesn't exist already
+       os.makedirs(destination)
+   
+   # these files in this directory are one hot encoded files...
+   for filename in tqdm(os.listdir(source_mask_folder)):
+       mask = cv2.imread(source_mask_folder + '/' + filename)
+       mask[np.all(mask == [0,0,0], axis=-1)] = [255,255,255]
+       # numpy_mask = np.asarray(mask, dtype=np.uint8)
+       cv2.imwrite(destination+'/'+filename, mask)   
+       
+       
+def background_to_black(source_mask_folder, destination):
+   
+   if not os.path.exists(destination): # if it doesn't exist already
+       os.makedirs(destination)
+   
+   # these files in this directory are one hot encoded files...
+   for filename in tqdm(os.listdir(source_mask_folder)):
+       mask = cv2.imread(source_mask_folder + '/' + filename)
+       average = np.average(mask)
+       if average > 100:
+           mask[np.all(mask == [255,255,255], axis=-1)] = [0,0,0]
+           # numpy_mask = np.asarray(mask, dtype=np.uint8)
+       cv2.imwrite(destination+'/'+filename, mask)   
+
 def colorize_binary(source_binary_folder, destination, class_color_dict, extension):
     
     if not os.path.exists(destination): # if it doesn't exist already
@@ -366,18 +393,6 @@ def colorize_binary(source_binary_folder, destination, class_color_dict, extensi
         filename_mask, ext = filename.split('.')
         cv2.imwrite(destination+'/'+filename_mask+'.'+extension, numpy_img)   
 
-def background_to_white(source_mask_folder, destination):
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
-    
-    # these files in this directory are one hot encoded files...
-    for filename in tqdm(os.listdir(source_mask_folder)):
-        mask = cv2.imread(source_mask_folder + '/' + filename)
-        mask[np.all(mask == [0,0,0], axis=-1)] = [255,255,255]
-        numpy_mask = np.asarray(mask, dtype=np.uint8)
-        cv2.imwrite(destination+'/'+filename, numpy_mask)
-
         
 def mask_to_binary_image(source_mask_folder, destination):
     
@@ -391,11 +406,17 @@ def mask_to_binary_image(source_mask_folder, destination):
         # read the file as a cv2 image
         grey_scale = cv2.imread(source_mask_folder + '/' + filename, cv2.IMREAD_GRAYSCALE) 
 
-        # Greyscale to Binary
-        binary = cv2.threshold(grey_scale, 0, 255,cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
-        
+        average = np.average(grey_scale)
+        if average > 100:   
+            # Greyscale to Binary
+            binary = cv2.threshold(grey_scale, 0, 255,cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+        else:
+            binary = cv2.threshold(grey_scale, 0, 255,cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+            
+        filename, ext = filename.split('.')
+        np.save(destination+filename+'.npy', binary)
         # save the image in the destination folder
-        cv2.imwrite(destination + '/' + filename, binary)
+        # cv2.imwrite(destination + '/' + filename, binary)
         
 def image_to_blank_bin_mask(source_image_folder, destination, extenstion):
     

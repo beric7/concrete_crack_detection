@@ -12,7 +12,6 @@ import cv2
 import numpy as np
 from PIL import Image
 import random
-from numpy import save
 from tqdm import tqdm
 
 def buildImageFileList(BASE, TEST_IMAGES_DIR, sort_ID_string):
@@ -126,25 +125,13 @@ def rescale_mask(source_image_folder, destination, dimension):
         image = cv2.resize(im1, (dimension,dimension), interpolation=cv2.INTER_NEAREST)            
                
         cv2.imwrite(destination + '/' + filename, image)       
-
-def rescale_binary_mask(source_image_folder, destination, dimension):
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
         
-    for filename in tqdm(os.listdir(source_image_folder)):
-        
-        im1 = np.load(source_image_folder + '/' + filename)
-        im1 = im1.astype(np.uint8)
-        image = cv2.resize(im1, (dimension,dimension), interpolation=cv2.INTER_NEAREST)           
-        save(destination+'/'+filename, image)                 
-
 def extension_change(source_image_folder, destination, extension):
     
     if not os.path.exists(destination): # if it doesn't exist already
         os.makedirs(destination)
         
-    for filename in os.listdir(source_image_folder):
+    for filename in tqdm(os.listdir(source_image_folder)):
         image = Image.open(source_image_folder + '/' + filename) 
   
         head, tail = filename.split('.')
@@ -152,9 +139,9 @@ def extension_change(source_image_folder, destination, extension):
 
         image = image.convert("RGB")          
                
-        image.save(destination + '/' + filename)
+        image.save(destination + '/' + filename, extension)
         
-def blackAndWhite(source_image_folder, destination):
+def greyscale(source_image_folder, destination):
     
     if not os.path.exists(destination): # if it doesn't exist already
         os.makedirs(destination)
@@ -167,52 +154,10 @@ def blackAndWhite(source_image_folder, destination):
                
         cv2.imwrite(destination+'/'+filename, im1)
 
-def erodeDialate(source_mask_folder, destination, ksize, iterations, extension):
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
-    
-    kernel = np.ones((ksize,ksize),np.uint8)
-        
-    for filename in os.listdir(source_mask_folder):
-        
-        mask = cv2.imread(source_mask_folder + '/' + filename) 
-        erosion_mask = cv2.erode(mask, kernel,iterations)
-        dialated_mask = cv2.dilate(erosion_mask, kernel, iterations)
-        
-        head, tail = filename.split('.')
-        filename = head + '.' + extension              
-               
-        cv2.imwrite(destination + '/' + filename, dialated_mask)
-
-def insertName(source_mask_folder, destination, insert_name):  
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
-    
-    for filename in os.listdir(source_mask_folder):
-        
-        mask = cv2.imread(source_mask_folder + '/' + filename) 
-
-        cv2.imwrite(destination + '/' + insert_name + filename, mask)
-   
-
-def dilate(source_mask_folder, destination, ksize, iterations, extension):  
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
-        
-    kernel = np.ones((ksize,ksize),np.uint8)
-    
-    for filename in os.listdir(source_mask_folder):
-        
-        mask = cv2.imread(source_mask_folder + '/' + filename) 
-        dialated_mask = cv2.dilate(mask, kernel, iterations)
-        
-        head, tail = filename.split('.')
-        filename = head + '.' + extension              
-               
-        cv2.imwrite(destination + '/' + filename, dialated_mask)
+# def dialateErode(source_image_folder, destination, ksize, iterations):
+#     kernel = np.ones((ksize,ksize),np.uint8)
+#     dialated_mask = cv2.dilate(erosion,kernel,iterations)
+#     erosion = cv2.erode(dialated_mask,kernel,iterations)
 
 def sort_images_into_folder(source_image_folder, destination, count_per, start=0):
     
@@ -231,46 +176,7 @@ def sort_images_into_folder(source_image_folder, destination, count_per, start=0
             os.makedirs(destination+'Folder_'+str(folderID))    
         shutil.move(source_image_folder + '/' + filename, destination+'Folder_'+str(folderID)+'/'+filename)
         x+=1
-
-def rename_segmentation(source_folder, source_image_folder, source_mask_folder, source_json_folder, source_ohev,
-                        test_or_train, image_destination, mask_destination, json_destination, ohev_destination):
-    
-    if not os.path.exists(test_or_train + image_destination): # if it doesn't exist already
-        os.makedirs(test_or_train + image_destination)
-    
-    if not os.path.exists(test_or_train + mask_destination): # if it doesn't exist already
-        os.makedirs(test_or_train + mask_destination)
         
-    if not os.path.exists(test_or_train + json_destination): # if it doesn't exist already
-        os.makedirs(test_or_train + json_destination) 
-        
-    if not os.path.exists(test_or_train + ohev_destination): # if it doesn't exist already
-        os.makedirs(test_or_train + ohev_destination) 
-        
-    x = 0
-    for filename in tqdm(os.listdir(source_folder)):
-        
-        new_image_name = filename
-        
-        name = filename.split('.')[0]
-        
-        old_json_name = name + '.json'
-        old_mask_name = name + '.png'  
-        old_ohev_name = name + '.npy'
-        
-        
-        new_image_name = str(x) + '.jpeg'
-        new_json_name = str(x) + '.json'
-        new_mask_name = str(x) + '.png'
-        new_ohev_name = str(x) + '.npy'
-        
-        shutil.copy(source_image_folder + '/' + filename, test_or_train + image_destination + new_image_name)     
-        shutil.copy(source_mask_folder + '/' + old_mask_name, test_or_train + mask_destination + new_mask_name)   
-        shutil.copy(source_json_folder + '/' + old_json_name, test_or_train + json_destination + new_json_name)     
-        shutil.copy(source_ohev + '/' + old_ohev_name, test_or_train + ohev_destination + new_ohev_name) 
-        x = x + 1
-
-
 def sharpenImage(source_image_folder, destination):
     
     if not os.path.exists(destination): # if it doesn't exist already
@@ -337,27 +243,119 @@ def random_sort_images(source_mask_folder, source_image_folder, destination_mask
             
         count = count + 1
 
-def select_class(source_image_folder, destination, remove_classes_array):
-    
-    if not os.path.exists(destination): # if it doesn't exist already
-        os.makedirs(destination)
-    
-    # these files in this directory are binary files...
-    for filename in tqdm(os.listdir(source_image_folder)):
-        bn_file = np.load(source_image_folder + '/' + filename)
-        for selected_class in remove_classes_array:
-            bn_file[bn_file == selected_class] = 0
+def random_sort_images_(source_mask_folder, source_cured_mask_folder, source_image_folder, destination_mask_test, 
+                        destination_cured_mask_test, destination_image_test, destination_mask_train, 
+                        destination_cured_mask_train, destination_image_train, percentage=0.1):
 
-        save(destination+'/'+filename, bn_file)
+    if not os.path.exists(destination_mask_test): # if it doesn't exist already
+        os.makedirs(destination_mask_test)
+    
+    if not os.path.exists(destination_cured_mask_test): # if it doesn't exist already
+        os.makedirs(destination_cured_mask_test)
+        
+    if not os.path.exists(destination_image_test): # if it doesn't exist already
+        os.makedirs(destination_image_test)  
+        
+    if not os.path.exists(destination_mask_train): # if it doesn't exist already
+        os.makedirs(destination_mask_train)
+        
+    if not os.path.exists(destination_cured_mask_train): # if it doesn't exist already
+        os.makedirs(destination_cured_mask_train)    
+        
+    if not os.path.exists(destination_image_train): # if it doesn't exist already
+        os.makedirs(destination_image_train)  
+    
+    
+    # list all files in dir
+    files = [f for f in os.listdir(source_image_folder) if os.path.isfile(source_image_folder + f)]
+    
+    random.shuffle(files)
+    # small_list = files[:int(len(files)*percentage)]
+    
+    count = 0
+    
+    for filename in files:
+        # send to test folder or train folder
+        if count < int(len(files)*percentage):
+            print(20 * '#')
+            print('Testing')
+            print(20 * '#')
+            shutil.copy(source_image_folder + '/' + filename, 
+                        destination_image_test+ '/' + filename)
+            print(filename)
+            shutil.copy(source_mask_folder + '/' + filename, 
+                        destination_mask_test+ '/' + filename)
+            shutil.copy(source_cured_mask_folder + '/' + filename, 
+                        destination_cured_mask_test+ '/' + filename)
+        else:
+            print(20 * '#')
+            print('Training')
+            print(20 * '#')
+            shutil.copy(source_image_folder + '/' + filename, 
+                        destination_image_train+ '/' + filename)
+            print(filename)
+            shutil.copy(source_mask_folder + '/' + filename, 
+                        destination_mask_train+ '/' + filename)
+            shutil.copy(source_cured_mask_folder + '/' + filename, 
+                        destination_cured_mask_train+ '/' + filename)           
+        count = count + 1
 
-def colorize_binary(source_image_folder, destination, class_color_dict):
+def random_sort_images__(source_mask_folder, source_image_folder, destination_mask_test, 
+                       destination_image_test, destination_mask_train, 
+                       destination_image_train, percentage=0.1):
+
+    if not os.path.exists(destination_mask_test): # if it doesn't exist already
+        os.makedirs(destination_mask_test)
+        
+    if not os.path.exists(destination_image_test): # if it doesn't exist already
+        os.makedirs(destination_image_test)  
+        
+    if not os.path.exists(destination_mask_train): # if it doesn't exist already
+        os.makedirs(destination_mask_train)
+        
+    if not os.path.exists(destination_image_train): # if it doesn't exist already
+        os.makedirs(destination_image_train)  
+    
+    
+    # list all files in dir
+    files = [f for f in os.listdir(source_image_folder) if os.path.isfile(source_image_folder + f)]
+    
+    random.shuffle(files)
+    # small_list = files[:int(len(files)*percentage)]
+    
+    count = 0
+    
+    for filename in files:
+        # send to test folder or train folder
+        if count < int(len(files)*percentage):
+            print(20 * '#')
+            print('Testing')
+            print(20 * '#')
+            shutil.copy(source_image_folder + '/' + filename, 
+                        destination_image_test+ '/' + filename)
+            print(filename)
+            shutil.copy(source_mask_folder + '/' + filename, 
+                        destination_mask_test+ '/' + filename)
+        else:
+            print(20 * '#')
+            print('Training')
+            print(20 * '#')
+            shutil.copy(source_image_folder + '/' + filename, 
+                        destination_image_train+ '/' + filename)
+            print(filename)
+            shutil.copy(source_mask_folder + '/' + filename, 
+                        destination_mask_train+ '/' + filename)
+            
+        count = count + 1
+        
+def colorize_binary(source_binary_folder, destination, class_color_dict, extension):
     
     if not os.path.exists(destination): # if it doesn't exist already
         os.makedirs(destination)
     
     # these files in this directory are one hot encoded files...
-    for filename in tqdm(os.listdir(source_image_folder)):
-        bn_file = np.load(source_image_folder + '/' + filename)
+    for filename in tqdm(os.listdir(source_binary_folder)):
+        bn_file = np.load(source_binary_folder + '/' + filename)
         new_bn = np.zeros((bn_file.shape[0], bn_file.shape[1], 3))
         selected_class = 0
         for selected_class in class_color_dict:
@@ -366,15 +364,74 @@ def colorize_binary(source_image_folder, destination, class_color_dict):
         
         numpy_img = np.asarray(new_bn, dtype=np.uint8)
         filename_mask, ext = filename.split('.')
-        cv2.imwrite(destination+'/'+filename_mask+'.png', numpy_img)
+        cv2.imwrite(destination+'/'+filename_mask+'.'+extension, numpy_img)   
 
-
-def build_image_file_list(source_directory):
-    imageFilePaths = []
-    image_names = []
+def background_to_white(source_mask_folder, destination):
     
-    for imageFileName in os.listdir(source_directory):
-        imageFilePaths.append(source_directory + imageFileName)
-        image_names.append(imageFileName)
+    if not os.path.exists(destination): # if it doesn't exist already
+        os.makedirs(destination)
+    
+    # these files in this directory are one hot encoded files...
+    for filename in tqdm(os.listdir(source_mask_folder)):
+        mask = cv2.imread(source_mask_folder + '/' + filename)
+        mask[np.all(mask == [0,0,0], axis=-1)] = [255,255,255]
+        numpy_mask = np.asarray(mask, dtype=np.uint8)
+        cv2.imwrite(destination+'/'+filename, numpy_mask)
+
         
-    return imageFilePaths, image_names
+def mask_to_binary_image(source_mask_folder, destination):
+    
+    # Ensure that destination folder exists or is created
+    if not os.path.exists(destination): # if it doesn't exist already
+        os.makedirs(destination)
+    
+    # run through the source folder for each mask file
+    for filename in tqdm(os.listdir(source_mask_folder)):
+        
+        # read the file as a cv2 image
+        grey_scale = cv2.imread(source_mask_folder + '/' + filename, cv2.IMREAD_GRAYSCALE) 
+
+        # Greyscale to Binary
+        binary = cv2.threshold(grey_scale, 0, 255,cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+        
+        # save the image in the destination folder
+        cv2.imwrite(destination + '/' + filename, binary)
+        
+def image_to_blank_bin_mask(source_image_folder, destination, extenstion):
+    
+    # Ensure that destination folder exists or is created
+    if not os.path.exists(destination): # if it doesn't exist already
+        os.makedirs(destination)
+    
+    # run through the source folder for each mask file
+    for filename in tqdm(os.listdir(source_image_folder)):
+        
+        # read the file as a cv2 image
+        img = cv2.imread(source_image_folder + '/' + filename) 
+        height = img.shape[1]
+        width = img.shape[0]
+        
+        blank_mask = np.zeros((width, height))
+        filename, ext = filename.split('.')
+        
+        # save the image in the destination folder
+        cv2.imwrite(destination + '/' + filename+'.'+extenstion, blank_mask)
+        
+def png_to_binary(source_image_folder, destination):
+    # Ensure that destination folder exists or is created
+    if not os.path.exists(destination): # if it doesn't exist already
+        os.makedirs(destination)
+        
+    for filename in tqdm(os.listdir(source_image_folder)):
+        img = cv2.imread(source_image_folder + '/' + filename)
+        filename, ext = filename.split('.')
+        np.save(destination+filename+'.npy', img)
+    
+def binary_to_jpeg(source_binary_folder, destination, class_color_dict):
+    colorize_binary(source_binary_folder, destination, class_color_dict, 'jpeg')
+    
+    
+def png_to_jpeg(source_image_folder, source_binary_folder, destination, class_color_dict):
+    png_to_binary(source_image_folder, source_binary_folder)
+    binary_to_jpeg(source_binary_folder, destination, class_color_dict)
+    

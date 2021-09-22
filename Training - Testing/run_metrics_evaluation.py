@@ -21,15 +21,11 @@ model = torch.load(f'./saved_stored_weights/LCW_weights_2.pt', map_location=torc
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 model.to(device)
-model.eval()   # Set model to evvar_2plus_weights_28aluate mode
-'''
-# Create the dataloader
-dataloaders = datahandler_plus.get_dataloader_sep_folder(data_dir, batch_size=batchsize)
-nnnnn = dataloaders['Test']
-'''
+model.eval() 
 ##############################################################################
 
 iOU, f1, confm_sum = iterate_data(model, data_dir)
-
+print('iOU: ' + str(iOU))
+print('f1 score: ' + str(f1))
 plot_confusion_matrix(confm_sum, target_names=['Background', 'Crack'], normalize=True, 
                       title='Confusion Matrix')

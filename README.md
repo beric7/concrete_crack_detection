@@ -49,7 +49,6 @@ Once training has converged or when it has stopped, we can used the best checkpo
 ***run_show_results__.py***
 - gets predicted masks
 - gets combined mask and image overaly
-- gets one-hot-encoded vector images of predictions
 
 ## Training with the concrete crack dataset
 

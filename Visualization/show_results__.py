@@ -44,9 +44,7 @@ def generate_images(model, image_path, name, destination_mask, destination_overl
     # color mapping corresponding to classes
     # ---------------------------------------------------------------------
     # 0 = background
-    # 1 = concrete
-    # 2 = steel
-    # 3 = metal decking
+    # 1 = crack
     # ---------------------------------------------------------------------
     import numpy as np
     mapping_1 = {0:np.array([0,0,0], dtype=np.uint8), 1:np.array([255,255,255], dtype=np.uint8)}

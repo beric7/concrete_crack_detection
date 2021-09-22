@@ -104,6 +104,8 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 ## Building a Custom Dataset
 (The images in the dataset were annotated using [GIMP](https://www.gimp.org/). We suggest that you use this tool)
 
+0. **If you are planning to extend on the LCW dataset, then please read the annotation guidelines provided by the author in the :red_circle: [LCW dataset](/access/not_ready.png) repository.**
+
 1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 
 2. For assistance on how to annotate the images using the GIMP software, we have provided a [video tutorial](https://www.youtube.com/watch?v=8YcIIMUQZF4) to outline our process. 

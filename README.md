@@ -11,7 +11,7 @@ Concrete crack detection for bridge inspections
     <img src="/figures/lcw.png" | width=400 />
 </p>
 
-***Figure: Labeled Cracks in the Wild (LCW) dataset (right)
+***Figure: Labeled Cracks in the Wild (LCW) dataset***
 
 The two semantic classes in the dataset are:
 ```

@@ -1,6 +1,4 @@
 # Concrete Crack Detection
-Concrete crack detection for bridge inspections
-
 <p align="center">
     <img src="/figures/congl_pred.jpg" | width=500 /><br/>
         <em> <strong>Conglomerate Model Predictions of Conglomerate Dataset</strong> </em>

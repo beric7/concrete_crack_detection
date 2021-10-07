@@ -128,12 +128,34 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 
 
 ## Citation
+
+***Conglomerate Concrete Crack Dataset:***
 ```
-Conglomerate Concrete Crack Dataset: 
-Conglomerate Concrete Crack Models:
-LCW Dataset: 
-LCW Models:
-Paper:
+Bianchi, Eric; Hebdon, Matthew (2021): Concrete Crack Conglomerate Dataset. 
+University Libraries, Virginia Tech. Dataset. https://doi.org/10.7294/16625056.v1 
+```
+
+***Conglomerate Concrete Crack Models:***
+```
+Bianchi, Eric; Hebdon, Matthew (2021): Trained Model for the Semantic Segmentation of Concrete Cracks (Conglomerate). 
+University Libraries, Virginia Tech. Software. https://doi.org/10.7294/16628596.v1 
+```
+
+***LCW Dataset:***
+```
+Bianchi, Eric; Hebdon, Matthew (2021): Labeled Cracks in the Wild (LCW) Dataset. 
+University Libraries, Virginia Tech. Dataset. https://doi.org/10.7294/16624672.v1 
+```
+
+***LCW Models:***
+```
+Bianchi, Eric; Hebdon, Matthew (2021): Trained model for the Semantic Segmentation of Concrete Cracks (LCW). 
+University Libraries, Virginia Tech. Software. https://doi.org/10.7294/16628707.v1 
+```
+
+***Paper:***
+```
+
 ```
 
 

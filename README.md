@@ -2,13 +2,13 @@
 Concrete crack detection for bridge inspections
 
 <p align="center">
-    <img src="/figures/congl_pred.jpg" | width=500 />
+    <img src="/figures/congl_pred.jpg" | width=500 />  
         <em> <strong>Conglomerate Model Predictions of Conglomerate Dataset</strong> </em>
 </p>
 
 
 <p align="center">
-    <img src="/figures/lcw.png" | width=500 /> 
+    <img src="/figures/lcw.png" | width=500 />  
         <em> <strong>LCW Model Predictions of Labeled Cracks in the Wild (LCW) Dataset</strong> </em>
 </p>
 

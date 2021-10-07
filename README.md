@@ -3,10 +3,15 @@ Concrete crack detection for bridge inspections
 
 <p align="center">
     <img src="/figures/congl_pred.jpg" | width=450 />
-    <img src="/figures/lcw.png" | width=450 />
 </p>
 
-***Figure: Conglomerate dataset (left), Labeled Cracks in the Wild (LCW) dataset (right)***
+***Figure: Conglomerate dataset***
+
+<p align="center">
+    <img src="/figures/lcw.png" | width=400 />
+</p>
+
+***Figure: Labeled Cracks in the Wild (LCW) dataset (right)
 
 The two semantic classes in the dataset are:
 ```
@@ -15,7 +20,7 @@ Concrete crack
 ```
 ***Coming soon in November***
 
-:red_circle:\[[Paper](/access/not_ready.png)\] :red_circle:\[[Dataset (LCW)](/access/not_ready.png)\] :red_circle:\[[Dataset (Conglomerate)](/access/not_ready.png)\] :red_circle:\[[Trained models (LCW)](/access/not_ready.png)\] :red_circle:\[[Trained models (Conglomerate)](/access/not_ready.png)\]
+:red_circle:\[[Paper](/access/not_ready.png)\] :red_circle:\[[Dataset (LCW)](/access/not_ready.png)\] :red_circle:\[[Dataset (Conglomerate)](/access/not_ready.png)\] :green_circle:\[[Trained models (LCW)](/https://doi.org/10.7294/16628707.v1)\] :red_circle:\[[Trained models (Conglomerate)](/access/not_ready.png)\]
 
 The conglomerate concrete crack segmentation dataset is comprised of many existing concrete crack datasets from literature. The Labeled Cracks in the Wild dataset is comprised of more global scenes gathered from bridge inspection reports. These two datasets aid with the detection and localization on concrete cracks. In particular, the LCW dataset is useful to the field becuase it offers a global scene perspective, which is more of what is found during inspection.  
 

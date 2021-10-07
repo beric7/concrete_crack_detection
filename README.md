@@ -3,15 +3,13 @@ Concrete crack detection for bridge inspections
 
 <p align="center">
     <img src="/figures/congl_pred.jpg" | width=450 />
+    <em> <strong>Conglomerate Model Predictions of Conglomerate Dataset</strong> </em>
 </p>
-
-***Figure: Conglomerate dataset***
 
 <p align="center">
     <img src="/figures/lcw.png" | width=400 />
+    <em> <strong>LCW Model Predictions of Labeled Cracks in the Wild (LCW) Dataset</strong> </em>
 </p>
-
-***Figure: Labeled Cracks in the Wild (LCW) dataset***
 
 The two semantic classes in the dataset are:
 ```

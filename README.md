@@ -154,7 +154,15 @@ University Libraries, Virginia Tech. Software. https://doi.org/10.7294/16628707.
 
 ***Paper:***
 ```
-
+@article{doi:10.1061/(ASCE)CP.1943-5487.0001045,
+author = {Eric Bianchi  and Matthew Hebdon },
+title = {Development of Extendable Open-Source Structural Inspection Datasets},
+journal = {Journal of Computing in Civil Engineering},
+volume = {36},
+number = {6},
+pages = {04022039},
+year = {2022},
+doi = {10.1061/(ASCE)CP.1943-5487.0001045},
 ```
 
 

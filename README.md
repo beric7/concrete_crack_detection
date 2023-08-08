@@ -15,9 +15,7 @@ The two semantic classes in the dataset are:
 Non concrete crack (Background)
 Concrete crack
 ```
-***Coming soon in November***
-
-:red_circle:\[[Paper](/access/not_ready.png)\] :green_circle:\[[Dataset (LCW)](https://doi.org/10.7294/16624672.v1)\] :green_circle:\[[Dataset (Conglomerate)](https://doi.org/10.7294/16625056.v1)\] :green_circle:\[[Trained models (LCW)](https://doi.org/10.7294/16628707.v1)\] :green_circle:\[[Trained models (Conglomerate)](https://doi.org/10.7294/16628596.v1)\]
+:green_circle:\[[Paper](https://doi.org/10.1061/(ASCE)CP.1943-5487.0001045)\] :green_circle:\[[Dataset (LCW)](https://doi.org/10.7294/16624672.v1)\] :green_circle:\[[Dataset (Conglomerate)](https://doi.org/10.7294/16625056.v1)\] :green_circle:\[[Trained models (LCW)](https://doi.org/10.7294/16628707.v1)\] :green_circle:\[[Trained models (Conglomerate)](https://doi.org/10.7294/16628596.v1)\]
 
 The conglomerate concrete crack segmentation dataset is comprised of many existing concrete crack datasets from literature. The Labeled Cracks in the Wild dataset is comprised of more global scenes gathered from bridge inspection reports. These two datasets aid with the detection and localization on concrete cracks. In particular, the LCW dataset is useful to the field becuase it offers a global scene perspective, which is more of what is found during inspection.  
 
@@ -46,7 +44,8 @@ The most important environment configurations are the following:
 - shutil
 
 ## Evaluating the Trained DeeplabV3+ Model
-- Download the DeeplabV3+ :red_circle:[trained model weights](/access/not_ready.png)
+- Download the DeeplabV3+ :green_circle:\[[Trained models (LCW)](https://doi.org/10.7294/16628707.v1)\] :green_circle:\[[Trained models (Conglomerate)](https://doi.org/10.7294/16628596.v1)\]
+
 - Configure ***run_metrics_evaluation.py***
 
 You will get the f1 score, the jaccard index, and the confusion matrix. We suggest running this in an IDE. 
@@ -61,7 +60,7 @@ Once training has converged or when it has stopped, we can used the best checkpo
 ## Training with the concrete crack dataset
 
 1. Clone the repository
-2. Download the Labeled Cracks in the Wild :red_circle:[dataset](/access/not_ready.png) or the Conglomerate Concrete Crack :red_circle:[dataset](/access/not_ready.png)
+2. Download the Labeled Cracks in the Wild :green_circle:\[[Dataset (LCW)](https://doi.org/10.7294/16624672.v1)\] or the :green_circle:\[[Dataset (Conglomerate)](https://doi.org/10.7294/16625056.v1)\]
 3. Go into the Training folder
 4. Create a DATA folder
 5. Copy and paste the Train and Test folders for 512x512 images from the dataset you downloaded into the DATA folder
@@ -110,7 +109,7 @@ self.mapping = {(0,0,0): 0, (255,255,255): 1}
 ## Building a Custom Dataset
 (The images in the dataset were annotated using [GIMP](https://www.gimp.org/). We suggest that you use this tool)
 
-0. **If you are planning to extend on the LCW dataset, then please read the annotation guidelines provided by the author in the :red_circle: [LCW dataset](/access/not_ready.png) repository.**
+0. **If you are planning to extend on the LCW dataset, then please read the annotation guidelines provided by the author in the :green_circle: [LCW dataset]:green_circle:\[[Dataset (LCW)](https://doi.org/10.7294/16624672.v1)\] repository.**
 
 1. Before beginning to annotate, we suggest that you use jpeg for the RGB image files. We advised against beginning with images which are already resized. If the images have a high-pixel you want to capture this in your original annotation. This lets whoever is using the dataset to decide if they want to break the original image into sub-images or resize it as they see fit. 
 
